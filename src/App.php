@@ -2,8 +2,8 @@
 require_once('vendor/autoload.php');
 require_once('app-autoload.php');
 
-use Cqc\drupal_crawler\Page\BasePage;
-use Cqc\drupal_crawler\Page\TestPage;
+use matthew_gill\drupal_crawler\Page\BasePage;
+use matthew_gill\drupal_crawler\Page\TestPage;
 
 $client = new BasePage('https://github.com/matthew-gill/drupal-scraper');
 //$client = new TestPage('https://www.symfony.com/blog/');

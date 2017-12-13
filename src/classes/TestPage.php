@@ -1,6 +1,6 @@
 <?php
 
-namespace Cqc\drupal_crawler\Page;
+namespace matthew_gill\drupal_crawler\Page;
 
 class TestPage extends BasePage {
 
