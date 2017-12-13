@@ -1,27 +1,16 @@
 <?php
 require_once('vendor/autoload.php');
+require_once('app-autoload.php');
 
-use Goutte\Client;
-use GuzzleHttp\Client as GuzzleClient;
+use Cqc\drupal_crawler\Page\BasePage;
+use Cqc\drupal_crawler\Page\TestPage;
 
-$client = new Client();
+$client = new BasePage('https://www.symfony.com/blog/');
 
-
-$client->setClient(new GuzzleClient(array(
-    'timeout' => 60,
-    'verify' => false
-)));
+echo $client->getTitle();
 
 
+$client = new TestPage('https://www.symfony.com/blog/');
 
-// Go to the symfony.com website
-$crawler = $client->request('GET', 'https://www.symfony.com/blog/');
+echo print_r($client->getAllOfTagText('a'));
 
-// Click on the "Security Advisories" link
-$link = $crawler->selectLink('Security Advisories')->link();
-$crawler = $client->click($link);
-
-// Get the latest post in this category and display the titles
-$crawler->filter('h2 > a')->each(function ($node) {
-    print trim($node->text())."\n";
-});
