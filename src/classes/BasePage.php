@@ -6,12 +6,16 @@ use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 
 class BasePage {
-	
+
 	protected $client;
 
 	protected $crawler;
 
 	public function __construct($url, $method = 'GET') {
+		$this->crawlUrl($url, $method);
+	}
+
+	public function crawlUrl($url, $method = 'GET'){
 		$this->client = new Client();
 		$this->client->setClient(new GuzzleClient(array(
 		    'timeout' => 60,
@@ -43,10 +47,14 @@ class BasePage {
 		return $text;
 	}
 
-	private function getCrawler($crawler = NULL) {
+	public function getCrawler($crawler = NULL) {
 		if($crawler == NULL) {
 			return $this->crawler;
 		}
 		return $crawler;
+	}
+
+	public function setCrawler($crawler) {
+		$this->crawler = $crawler;
 	}
 }
